@@ -8,13 +8,16 @@ import java.util.Date;
 public class Student {
     private String firstName;
     private String lastName;
-    private String[] subjects = new String[10];
+    private String[] subjects;
     private Date dateOfBirth;
+    private int countOfSubjects;
 
     public Student(String firstName, String lastName, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        subjects = new String[10];
+        countOfSubjects = 0;
     }
 
     public String toString() {
@@ -47,31 +50,36 @@ public class Student {
         System.exit(1);
     }
 
-    public void addSubject(String subject) {
+    public boolean addSubject(String subject) {
         //String[] temp = new String[subjects.length + 1];
-        for (int i = 0; i < subjects.length; i++){
-            subjects[i] = subjects[i] + subject;
+        if (subject == null || subject == "") {
+            return false;
         }
-
-/*
-        //for (int i = 0; i < subjects.length; i++) {
-            String[] temp = new String[subjects.length + 1];
-            temp[subjects.length] = subject;
-            subjects = temp;
-        //}
-
- */
-
-
-    }
-
-    public void printSubjects(){
-        for (int i=0; i< subjects.length; i++){
-            System.out.print(subjects[i]+ " ");
+        boolean fine = false;
+        for (int i = 0; i < countOfSubjects; i++) {
+            if (subjects[i].compareToIgnoreCase(subject) == 0) {
+                fine = true;
+                break;
+                //System.out.println("This student is already have such subject!");
+            }
+        }
+        if (fine == false && countOfSubjects < 10) {
+            subjects[countOfSubjects] = subject.toUpperCase();
+            countOfSubjects++;
+            return true;
+        } else {
+            return false;
         }
     }
 
-/*
+    public void printfSUbjects(){
+        System.out.println("Student " +firstName+ " " +lastName+ " has this subjects: ");
+        for (int i = 0; i < countOfSubjects; i++){
+            System.out.print(subjects[i]+ " - ");
+        }
+    }
+
+    /*
     public Calendar getAge(){
         return dateOfBirth;
     }

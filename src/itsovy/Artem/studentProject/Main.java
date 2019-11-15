@@ -37,7 +37,7 @@ public class Main {
         dima.addSubject("PHY");
         katia.addSubject("MAT");
         katia.addSubject("PHY");
-        filip.printSubjects();
+        filip.printfSUbjects();
 
         //g1.getStudMonth(5);
 
